@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navigation from './sections/Navigation';
@@ -19,17 +20,23 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const mainRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
-    // Scroll to hash section when navigating from another page (e.g. /blog → /#contact)
-    if (window.location.hash) {
-      const id = window.location.hash;
-      const timer = setTimeout(() => {
-        document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
-      }, 600);
-      return () => clearTimeout(timer);
-    }
-  }, []);
+    const scrollTo = (location.state as { scrollTo?: string } | null)?.scrollTo;
+    if (!scrollTo) return;
+    // Poll until the element exists (handles GSAP init delay)
+    let attempts = 0;
+    const interval = setInterval(() => {
+      const el = document.querySelector(scrollTo);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        clearInterval(interval);
+      }
+      if (++attempts > 20) clearInterval(interval);
+    }, 100);
+    return () => clearInterval(interval);
+  }, [location.state]);
 
   useEffect(() => {
     // Initialize ScrollTrigger

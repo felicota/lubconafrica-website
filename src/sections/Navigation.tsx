@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -9,6 +9,7 @@ interface NavigationProps {
 
 const Navigation = ({ alwaysScrolled = false }: NavigationProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
   const [isScrolled, setIsScrolled] = useState(alwaysScrolled || !isHome);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -29,9 +30,11 @@ const Navigation = ({ alwaysScrolled = false }: NavigationProps) => {
 
   const scrollToSection = (href: string) => {
     setIsMobileMenuOpen(false);
-    if (!isHome) { window.location.href = `/${href}`; return; }
-    const element = document.querySelector(href);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
+    if (!isHome) {
+      navigate('/', { state: { scrollTo: href } });
+      return;
+    }
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
