@@ -25,13 +25,14 @@ function App() {
   useEffect(() => {
     const scrollTo = (location.state as { scrollTo?: string } | null)?.scrollTo;
     if (!scrollTo) return;
-    // Poll until the element exists (handles GSAP init delay)
     let attempts = 0;
     const interval = setInterval(() => {
-      const el = document.querySelector(scrollTo);
+      const el = document.querySelector(scrollTo) as HTMLElement | null;
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
         clearInterval(interval);
+        // Use instant jump so GSAP ScrollTrigger snap cannot intercept
+        const navHeight = 80;
+        window.scrollTo({ top: el.offsetTop - navHeight, behavior: 'instant' });
       }
       if (++attempts > 20) clearInterval(interval);
     }, 100);
