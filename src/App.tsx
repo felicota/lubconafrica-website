@@ -21,6 +21,17 @@ function App() {
   const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Scroll to hash section when navigating from another page (e.g. /blog → /#contact)
+    if (window.location.hash) {
+      const id = window.location.hash;
+      const timer = setTimeout(() => {
+        document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  useEffect(() => {
     // Initialize ScrollTrigger
     ScrollTrigger.refresh();
     
