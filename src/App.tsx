@@ -30,9 +30,11 @@ function App() {
       const el = document.querySelector(scrollTo) as HTMLElement | null;
       if (el) {
         clearInterval(interval);
-        // Use instant jump so GSAP ScrollTrigger snap cannot intercept
-        const navHeight = 80;
-        window.scrollTo({ top: el.offsetTop - navHeight, behavior: 'instant' });
+        // Kill the GSAP snap trigger so it cannot pull the page back after we scroll
+        ScrollTrigger.getAll()
+          .filter(st => st.vars.snap)
+          .forEach(st => st.kill());
+        window.scrollTo({ top: el.offsetTop - 80, behavior: 'instant' });
       }
       if (++attempts > 20) clearInterval(interval);
     }, 100);
