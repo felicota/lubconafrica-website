@@ -25,20 +25,15 @@ function App() {
   useEffect(() => {
     const scrollTo = (location.state as { scrollTo?: string } | null)?.scrollTo;
     if (!scrollTo) return;
-    let attempts = 0;
-    const interval = setInterval(() => {
+    // Wait 600ms so the GSAP snap (set up at 500ms) is fully initialised,
+    // then kill it before scrolling so it cannot pull the page back.
+    const timer = setTimeout(() => {
       const el = document.querySelector(scrollTo) as HTMLElement | null;
-      if (el) {
-        clearInterval(interval);
-        // Kill the GSAP snap trigger so it cannot pull the page back after we scroll
-        ScrollTrigger.getAll()
-          .filter(st => st.vars.snap)
-          .forEach(st => st.kill());
-        window.scrollTo({ top: el.offsetTop - 80, behavior: 'instant' });
-      }
-      if (++attempts > 20) clearInterval(interval);
-    }, 100);
-    return () => clearInterval(interval);
+      if (!el) return;
+      ScrollTrigger.getAll().forEach(st => st.kill());
+      window.scrollTo({ top: el.offsetTop - 80, behavior: 'instant' });
+    }, 600);
+    return () => clearTimeout(timer);
   }, [location.state]);
 
   useEffect(() => {
