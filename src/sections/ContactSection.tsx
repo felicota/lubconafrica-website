@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone, Clock, Send } from 'lucide-react';
+import { Mail, Phone, Clock, MapPin, Send } from 'lucide-react';
 import { toast } from 'sonner';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,6 +21,7 @@ const ContactSection = () => {
     phone: '',
     message: '',
   });
+  const [submitting, setSubmitting] = useState(false);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -65,10 +66,32 @@ const ContactSection = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success('Thank you for your inquiry! We will get back to you within 24 hours.');
-    setFormData({ name: '', company: '', email: '', phone: '', message: '' });
+    setSubmitting(true);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          subject: `New quote request from ${formData.name} — LUBCON Africa`,
+          from_name: 'LUBCON Africa Website',
+          ...formData,
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        toast.success('Message sent! We\'ll get back to you within 24 hours.');
+        setFormData({ name: '', company: '', email: '', phone: '', message: '' });
+      } else {
+        toast.error('Something went wrong. Please try again.');
+      }
+    } catch {
+      toast.error('Could not send message. Check your connection and try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -135,9 +158,22 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <span className="font-mono-label text-white/40 block mb-1">Phone</span>
-                  <a href="tel:+2341234567890" className="text-white hover:text-gold transition-colors">
-                    +234 123 456 7890
+                  <a href="tel:+2348061563148" className="text-white hover:text-gold transition-colors">
+                    +234 806 156 3148
                   </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-gold" />
+                </div>
+                <div>
+                  <span className="font-mono-label text-white/40 block mb-1">Address</span>
+                  <span className="text-white leading-relaxed">
+                    Lubcon Avenue, Adewole Industrial Layout,<br />
+                    Ilorin, Kwara State, Nigeria
+                  </span>
                 </div>
               </div>
 
@@ -224,10 +260,11 @@ const ContactSection = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-gold hover:bg-gold-light text-navy-dark font-semibold py-3 rounded-full flex items-center justify-center gap-2 transition-all duration-300"
+                disabled={submitting}
+                className="w-full bg-gold hover:bg-gold-light text-navy-dark font-semibold py-3 rounded-full flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <Send size={18} />
-                Request a quote
+                {submitting ? 'Sending…' : 'Request a quote'}
               </Button>
             </form>
           </div>

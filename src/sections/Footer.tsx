@@ -1,4 +1,5 @@
-import { Linkedin, Twitter, Facebook, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Twitter, Facebook, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,17 +25,16 @@ const Footer = () => {
     ],
     company: [
       { label: 'About Us', href: '#built-for-africa' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Careers', href: '#contact' },
-      { label: 'News', href: '#innovation' },
       { label: 'Contact', href: '#contact' },
     ],
   };
 
   const socialLinks = [
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Facebook, href: 'https://facebook.com/lubcongroup', label: 'Facebook' },
+    { icon: Instagram, href: 'https://instagram.com/lubcongroup', label: 'Instagram' },
+    { icon: Twitter, href: 'https://x.com/GroupLubcon', label: 'X (Twitter)' },
   ];
 
   const scrollToSection = (href: string) => {
@@ -62,9 +62,19 @@ const Footer = () => {
             >
               Lubcon<span className="text-gold"> Africa</span>
             </a>
-            <p className="text-cool-gray text-sm leading-relaxed max-w-xs mb-6">
+            <p className="text-cool-gray text-sm leading-relaxed max-w-xs mb-3">
               Nigeria's first indigenous lubricant company, powering industries since 1991.
             </p>
+            <p className="text-cool-gray text-sm leading-relaxed max-w-xs mb-1">
+              Lubcon Avenue, Adewole Industrial Layout,<br />
+              Ilorin, Kwara State, Nigeria.
+            </p>
+            <a href="mailto:info@lubconafrica.com" className="text-cool-gray text-sm hover:text-gold transition-colors block mb-1">
+              info@lubconafrica.com
+            </a>
+            <a href="tel:+2348061563148" className="text-cool-gray text-sm hover:text-gold transition-colors block mb-6">
+              +234 806 156 3148
+            </a>
             
             {/* Social Links */}
             <div className="flex gap-3">
@@ -150,16 +160,22 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(link.href);
-                    }}
-                    className="text-cool-gray text-sm hover:text-white transition-colors duration-300"
-                  >
-                    {link.label}
-                  </a>
+                  {link.href.startsWith('/') ? (
+                    <Link
+                      to={link.href}
+                      className="text-cool-gray text-sm hover:text-white transition-colors duration-300"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      onClick={(e) => { e.preventDefault(); scrollToSection(link.href); }}
+                      className="text-cool-gray text-sm hover:text-white transition-colors duration-300"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

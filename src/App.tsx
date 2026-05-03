@@ -12,6 +12,7 @@ import IndustrySolutionsSection from './sections/IndustrySolutionsSection';
 import QualitySection from './sections/QualitySection';
 import DistributionSection from './sections/DistributionSection';
 import ContactSection from './sections/ContactSection';
+import BlogPreviewSection from './sections/BlogPreviewSection';
 import Footer from './sections/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -103,7 +104,10 @@ function App() {
         {/* Section 9: Distribution */}
         <DistributionSection />
         
-        {/* Section 10: Contact */}
+        {/* Section 10: Blog Preview */}
+        <BlogPreviewSection />
+
+        {/* Section 11: Contact */}
         <ContactSection />
         
         {/* Footer */}
