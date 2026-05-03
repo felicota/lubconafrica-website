@@ -21,31 +21,33 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const mainRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const skipSnap = useRef(false);
 
+  // Cross-page scroll (e.g. /blog → #contact).
+  // Set the flag BEFORE the GSAP snap initialises (500ms) so snap skips itself,
+  // then scroll at 600ms when the DOM is ready.
   useEffect(() => {
     const scrollTo = (location.state as { scrollTo?: string } | null)?.scrollTo;
     if (!scrollTo) return;
-    // Wait 600ms so the GSAP snap (set up at 500ms) is fully initialised,
-    // then kill it before scrolling so it cannot pull the page back.
+    skipSnap.current = true;
     const timer = setTimeout(() => {
       const el = document.querySelector(scrollTo) as HTMLElement | null;
-      if (!el) return;
-      ScrollTrigger.getAll().forEach(st => st.kill());
-      window.scrollTo({ top: el.offsetTop - 80, behavior: 'instant' });
+      if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'instant' });
     }, 600);
     return () => clearTimeout(timer);
   }, [location.state]);
 
   useEffect(() => {
-    // Initialize ScrollTrigger
     ScrollTrigger.refresh();
-    
-    // Setup global snap for pinned sections
+
     const setupGlobalSnap = () => {
+      // Skip snap when we are programmatically scrolling to a section
+      if (skipSnap.current) return;
+
       const pinned = ScrollTrigger.getAll()
         .filter(st => st.vars.pin)
         .sort((a, b) => a.start - b.start);
-      
+
       const maxScroll = ScrollTrigger.maxScroll(window);
       if (!maxScroll || pinned.length === 0) return;
 
@@ -60,21 +62,18 @@ function App() {
           snapTo: (value: number) => {
             const inPinned = pinnedRanges.some(r => value >= r.start - 0.02 && value <= r.end + 0.02);
             if (!inPinned) return value;
-
-            const target = pinnedRanges.reduce((closest, r) =>
+            return pinnedRanges.reduce((closest, r) =>
               Math.abs(r.center - value) < Math.abs(closest - value) ? r.center : closest,
               pinnedRanges[0]?.center ?? 0
             );
-            return target;
           },
           duration: { min: 0.15, max: 0.35 },
           delay: 0,
-          ease: "power2.out"
-        }
+          ease: 'power2.out',
+        },
       });
     };
 
-    // Delay to ensure all ScrollTriggers are created
     const timer = setTimeout(setupGlobalSnap, 500);
 
     return () => {
@@ -85,48 +84,20 @@ function App() {
 
   return (
     <div ref={mainRef} className="relative bg-navy">
-      {/* Noise Overlay */}
       <div className="noise-overlay" />
-      
-      {/* Navigation */}
       <Navigation />
-      
-      {/* Main Content */}
       <main className="relative">
-        {/* Section 1: Hero */}
         <HeroSection />
-        
-        {/* Section 2: Built for Africa */}
         <BuiltForAfricaSection />
-        
-        {/* Section 3: Product Categories */}
         <ProductCategoriesSection />
-        
-        {/* Section 4: Featured Product */}
         <FeaturedProductSection />
-        
-        {/* Section 5: Capabilities */}
         <CapabilitiesSection />
-        
-        {/* Section 6: Innovation */}
         <InnovationSection />
-        
-        {/* Section 7: Industry Solutions */}
         <IndustrySolutionsSection />
-        
-        {/* Section 8: Quality */}
         <QualitySection />
-        
-        {/* Section 9: Distribution */}
         <DistributionSection />
-        
-        {/* Section 10: Blog Preview */}
         <BlogPreviewSection />
-
-        {/* Section 11: Contact */}
         <ContactSection />
-        
-        {/* Footer */}
         <Footer />
       </main>
     </div>
