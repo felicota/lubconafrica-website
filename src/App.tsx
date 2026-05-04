@@ -11,6 +11,7 @@ import CapabilitiesSection from './sections/CapabilitiesSection';
 import InnovationSection from './sections/InnovationSection';
 import IndustrySolutionsSection from './sections/IndustrySolutionsSection';
 import QualitySection from './sections/QualitySection';
+import CertificationsSection from './sections/CertificationsSection';
 import DistributionSection from './sections/DistributionSection';
 import ContactSection from './sections/ContactSection';
 import BlogPreviewSection from './sections/BlogPreviewSection';
@@ -95,6 +96,7 @@ function App() {
         <InnovationSection />
         <IndustrySolutionsSection />
         <QualitySection />
+        <CertificationsSection />
         <DistributionSection />
         <BlogPreviewSection />
         <ContactSection />
