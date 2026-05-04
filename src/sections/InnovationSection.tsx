@@ -99,7 +99,7 @@ const InnovationSection = () => {
 
         {/* Body */}
         <div ref={bodyRef} className="mt-10 text-center">
-          <p className="text-cool-gray text-base lg:text-lg max-w-[52vw] leading-relaxed mb-8">
+          <p className="text-cool-gray text-base lg:text-lg lg:max-w-[52vw] leading-relaxed mb-8">
             We test for oxidation, wear, and viscosity stability—so you don't have to.
           </p>
           <Button

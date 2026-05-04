@@ -113,7 +113,7 @@ const BuiltForAfricaSection = () => {
         {/* Subheadline */}
         <p
           ref={subheadlineRef}
-          className="mt-8 text-cool-gray text-base lg:text-lg text-center max-w-[52vw] leading-relaxed"
+          className="mt-8 text-cool-gray text-base lg:text-lg text-center lg:max-w-[52vw] leading-relaxed"
         >
           Formulated for heat, dust, and heavy loads. Proven across industries.
         </p>

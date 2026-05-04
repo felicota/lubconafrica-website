@@ -30,10 +30,11 @@
     <meta name="twitter:description" content="Nigeria's first indigenous lubricant company. Engine oils, hydraulic fluids and industrial greases for Africa's industries." />
     <meta name="twitter:image" content="https://lubconafrica.com/logo.png" />
 
-    <!-- ── Theme & favicon ──────────────────────────────────── -->
+    <!-- ── Theme, favicon & PWA ────────────────────────────── -->
     <meta name="theme-color" content="#0B1F3F" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- ── JSON-LD Structured Data (LocalBusiness) ──────────── -->
     <script type="application/ld+json">
@@ -71,6 +72,14 @@
         "https://x.com/GroupLubcon"
       ]
     }
+    </script>
+    <!-- ── Google Analytics 4 ──────────────────────────────── -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_ID%"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '%VITE_GA_ID%');
     </script>
   </head>
   <body>

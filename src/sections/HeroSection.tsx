@@ -164,7 +164,7 @@ const HeroSection = () => {
         {/* Subheadline */}
         <p
           ref={subheadlineRef}
-          className="mt-8 text-cool-gray text-base lg:text-lg max-w-[34vw] leading-relaxed"
+          className="mt-8 text-cool-gray text-base lg:text-lg lg:max-w-[34vw] leading-relaxed"
         >
           High-performance oils and greases engineered for African operating conditions.
         </p>

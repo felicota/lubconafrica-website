@@ -99,7 +99,7 @@ const QualitySection = () => {
 
         {/* Body */}
         <div ref={bodyRef} className="mt-10 text-center">
-          <p className="text-cool-gray text-base lg:text-lg max-w-[52vw] leading-relaxed mb-8">
+          <p className="text-cool-gray text-base lg:text-lg lg:max-w-[52vw] leading-relaxed mb-8">
             Batch testing, traceability, and compliance with international standards—delivered consistently.
           </p>
           <Button
