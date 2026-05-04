@@ -1,13 +1,12 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ShieldCheck, BadgeCheck } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const certifications = [
   {
-    icon: ShieldCheck,
+    logo: '/iso_logo.jpeg',
     code: 'ISO 9001:2015',
     body: 'International Organisation for Standardisation',
     description:
@@ -15,7 +14,7 @@ const certifications = [
     tag: 'Quality Management',
   },
   {
-    icon: BadgeCheck,
+    logo: '/son_logo.png',
     code: 'SON Certified',
     body: 'Standards Organisation of Nigeria',
     description:
@@ -80,47 +79,48 @@ const CertificationsSection = () => {
 
         {/* Certification cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
-          {certifications.map((cert, i) => {
-            const Icon = cert.icon;
-            return (
-              <div
-                key={cert.code}
-                ref={el => { cardsRef.current[i] = el; }}
-                className="relative bg-white/5 border border-white/10 rounded-2xl p-8 overflow-hidden group hover:border-gold/30 transition-colors duration-300"
-              >
-                {/* Background glow */}
-                <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-gold/5 blur-2xl group-hover:bg-gold/10 transition-colors duration-500" />
+          {certifications.map((cert, i) => (
+            <div
+              key={cert.code}
+              ref={el => { cardsRef.current[i] = el; }}
+              className="relative bg-white/5 border border-white/10 rounded-2xl p-8 overflow-hidden group hover:border-gold/30 transition-colors duration-300"
+            >
+              {/* Background glow */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-gold/5 blur-2xl group-hover:bg-gold/10 transition-colors duration-500" />
 
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center mb-6">
-                  <Icon className="w-7 h-7 text-gold" />
-                </div>
-
-                {/* Tag */}
-                <span className="font-mono-label text-xs text-gold/70 block mb-2">
-                  {cert.tag}
-                </span>
-
-                {/* Code */}
-                <h3 className="font-display font-bold text-white text-2xl mb-1">
-                  {cert.code}
-                </h3>
-
-                {/* Issuing body */}
-                <p className="text-white/30 text-xs mb-4 font-mono-label">
-                  {cert.body}
-                </p>
-
-                {/* Divider */}
-                <div className="h-px bg-white/10 mb-4" />
-
-                {/* Description */}
-                <p className="text-white/60 text-sm leading-relaxed">
-                  {cert.description}
-                </p>
+              {/* Logo — white background so colours render correctly */}
+              <div className="w-24 h-24 rounded-xl bg-white flex items-center justify-center mb-6 p-3 shadow-lg">
+                <img
+                  src={cert.logo}
+                  alt={cert.code}
+                  className="w-full h-full object-contain"
+                />
               </div>
-            );
-          })}
+
+              {/* Tag */}
+              <span className="font-mono-label text-xs text-gold/70 block mb-2">
+                {cert.tag}
+              </span>
+
+              {/* Code */}
+              <h3 className="font-display font-bold text-white text-2xl mb-1">
+                {cert.code}
+              </h3>
+
+              {/* Issuing body */}
+              <p className="text-white/30 text-xs mb-4 font-mono-label">
+                {cert.body}
+              </p>
+
+              {/* Divider */}
+              <div className="h-px bg-white/10 mb-4" />
+
+              {/* Description */}
+              <p className="text-white/60 text-sm leading-relaxed">
+                {cert.description}
+              </p>
+            </div>
+          ))}
         </div>
 
         {/* Trust footnote */}
