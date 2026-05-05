@@ -10,10 +10,12 @@ import AdminLoginPage from './pages/admin/AdminLoginPage.tsx'
 import AdminPostsPage from './pages/admin/AdminPostsPage.tsx'
 import PostEditorPage from './pages/admin/PostEditorPage.tsx'
 import WhatsAppButton from './components/WhatsAppButton.tsx'
+import ScrollToTop from './components/ScrollToTop.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/blog" element={<BlogListPage />} />
