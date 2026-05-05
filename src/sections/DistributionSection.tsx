@@ -1,28 +1,43 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { ArrowRight } from 'lucide-react';
+import { distributors } from '@/data/distributors';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const partners = [
-  'Shell', 'Total', 'Mobil', 'Castrol', 'Valvoline', 'BP'
-];
+// Custom DivIcon markers — avoids Vite bundler icon path issues
+const hqIcon = L.divIcon({
+  className: '',
+  html: `<div style="
+    width:18px;height:18px;border-radius:50%;
+    background:#D4A23A;border:3px solid #fff;
+    box-shadow:0 0 0 3px rgba(212,162,58,0.4);
+  "></div>`,
+  iconSize: [18, 18],
+  iconAnchor: [9, 9],
+  popupAnchor: [0, -12],
+});
 
-const distributionPoints = [
-  { x: 25, y: 35, name: 'Lagos' },
-  { x: 35, y: 40, name: 'Abuja' },
-  { x: 45, y: 30, name: 'Kano' },
-  { x: 55, y: 45, name: 'Port Harcourt' },
-  { x: 65, y: 35, name: 'Onitsha' },
-  { x: 75, y: 50, name: 'Ibadan' },
-];
+const hubIcon = L.divIcon({
+  className: '',
+  html: `<div style="
+    width:12px;height:12px;border-radius:50%;
+    background:#fff;border:2px solid rgba(255,255,255,0.6);
+    box-shadow:0 0 0 2px rgba(255,255,255,0.2);
+  "></div>`,
+  iconSize: [12, 12],
+  iconAnchor: [6, 6],
+  popupAnchor: [0, -10],
+});
 
 const DistributionSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
-  const dotsRef = useRef<(HTMLDivElement | null)[]>([]);
   const partnersRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -30,147 +45,103 @@ const DistributionSection = () => {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      // Header animation
       gsap.fromTo(headerRef.current,
         { x: '-4vw', opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: 'top 80%',
-            end: 'top 55%',
-            scrub: true,
-          }
-        }
+        { x: 0, opacity: 1, ease: 'power2.out', scrollTrigger: { trigger: headerRef.current, start: 'top 80%', end: 'top 55%', scrub: true } }
       );
-
-      // Map card animation
       gsap.fromTo(mapRef.current,
         { x: '6vw', opacity: 0, scale: 0.98 },
-        {
-          x: 0,
-          opacity: 1,
-          scale: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: mapRef.current,
-            start: 'top 80%',
-            end: 'top 50%',
-            scrub: true,
-          }
-        }
+        { x: 0, opacity: 1, scale: 1, ease: 'power2.out', scrollTrigger: { trigger: mapRef.current, start: 'top 80%', end: 'top 50%', scrub: true } }
       );
-
-      // Map dots animation
-      dotsRef.current.forEach((dot) => {
-        if (!dot) return;
-        gsap.fromTo(dot,
-          { scale: 0, opacity: 0 },
-          {
-            scale: 1,
-            opacity: 1,
-            ease: 'back.out(1.7)',
-            scrollTrigger: {
-              trigger: mapRef.current,
-              start: 'top 60%',
-              end: 'top 40%',
-              scrub: true,
-            }
-          }
-        );
-      });
-
-      // Partners animation
       gsap.fromTo(partnersRef.current,
         { y: '3vh', opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: partnersRef.current,
-            start: 'top 90%',
-            end: 'top 70%',
-            scrub: true,
-          }
-        }
+        { y: 0, opacity: 1, ease: 'power2.out', scrollTrigger: { trigger: partnersRef.current, start: 'top 90%', end: 'top 70%', scrub: true } }
       );
-
     }, section);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="distribution"
-      className="relative z-[90] bg-navy py-20 lg:py-32"
-    >
+    <section ref={sectionRef} id="distribution" className="relative z-[90] bg-navy py-20 lg:py-32">
       <div className="px-6 lg:px-[6vw]">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left Content */}
+
+          {/* Left */}
           <div ref={headerRef}>
+            <span className="font-mono-label text-gold block mb-3">Nationwide Coverage</span>
             <h2 className="font-display font-bold text-white text-[clamp(32px,3.6vw,56px)] mb-6">
               Distribution Network
             </h2>
-            <p className="text-cool-gray text-base lg:text-lg leading-relaxed max-w-lg mb-8">
-              A reliable supply chain that keeps your operations moving—wherever you are.
+            <p className="text-cool-gray text-base lg:text-lg leading-relaxed max-w-lg mb-6">
+              From our headquarters in Ilorin, LUBCON Africa products reach fleets, factories and farms across Nigeria through a growing network of distribution hubs.
             </p>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                <span className="font-display font-bold text-gold text-3xl block">{distributors.length - 1}</span>
+                <span className="text-white/40 text-sm">Distribution hubs</span>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                <span className="font-display font-bold text-gold text-3xl block">6</span>
+                <span className="text-white/40 text-sm">Geopolitical zones</span>
+              </div>
+            </div>
+
             <a
               href="#contact"
-              className="inline-flex items-center text-gold hover:text-gold-light transition-colors duration-300"
+              onClick={e => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+              className="inline-flex items-center text-gold hover:text-gold-light transition-colors duration-300 font-medium"
             >
-              <span className="font-medium">Find a distributor</span>
+              Become a distributor
               <ArrowRight size={18} className="ml-2" />
             </a>
           </div>
 
-          {/* Right Map Card */}
-          <div
-            ref={mapRef}
-            className="relative bg-white/5 border border-white/10 rounded-xl p-6 lg:p-8"
-          >
-            {/* Map Visualization */}
-            <div className="relative h-64 lg:h-80 bg-navy-light/50 rounded-lg overflow-hidden">
-              {/* Simplified Africa Map Background */}
-              <svg
-                viewBox="0 0 100 100"
-                className="absolute inset-0 w-full h-full opacity-20"
+          {/* Right — Leaflet Map */}
+          <div ref={mapRef} className="relative bg-white/5 border border-white/10 rounded-xl overflow-hidden">
+            <div className="h-72 lg:h-96">
+              <MapContainer
+                center={[9.0, 8.0]}
+                zoom={5}
+                scrollWheelZoom={false}
+                className="w-full h-full"
+                style={{ background: '#0B1F3F' }}
               >
-                <path
-                  d="M20,20 Q30,15 40,20 Q50,25 60,20 Q70,15 80,25 Q85,40 80,55 Q75,70 65,80 Q50,90 35,80 Q20,70 15,55 Q10,40 20,20"
-                  fill="currentColor"
-                  className="text-white"
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                  url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
                 />
-              </svg>
+                {distributors.map(d => (
+                  <Marker
+                    key={d.name}
+                    position={[d.lat, d.lng]}
+                    icon={d.isHQ ? hqIcon : hubIcon}
+                  >
+                    <Popup className="lubcon-popup">
+                      <div className="text-center p-1">
+                        {d.isHQ && (
+                          <span className="text-[10px] font-bold text-amber-500 uppercase tracking-wider block mb-0.5">Headquarters</span>
+                        )}
+                        <strong className="text-sm block">{d.city}</strong>
+                        <span className="text-xs text-gray-500">{d.state}</span>
+                      </div>
+                    </Popup>
+                  </Marker>
+                ))}
+              </MapContainer>
+            </div>
 
-              {/* Distribution Points */}
-              {distributionPoints.map((point, index) => (
-                <div
-                  key={point.name}
-                  ref={el => { dotsRef.current[index] = el; }}
-                  className="absolute"
-                  style={{ left: `${point.x}%`, top: `${point.y}%` }}
-                >
-                  <div className="relative">
-                    <div className="w-3 h-3 bg-gold rounded-full" />
-                    <div className="absolute inset-0 w-3 h-3 bg-gold rounded-full animate-ping opacity-50" />
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xs text-white/70 whitespace-nowrap">
-                      {point.name}
-                    </span>
-                  </div>
-                </div>
-              ))}
-
-              {/* Center Label */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-8 h-8 text-gold mx-auto mb-2" />
-                  <span className="font-mono-label text-white/60">Nigeria</span>
-                </div>
+            {/* Legend */}
+            <div className="flex items-center gap-6 px-5 py-3 border-t border-white/10">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-gold border-2 border-white/60" />
+                <span className="font-mono-label text-white/40 text-[10px]">HQ — Ilorin</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-white border border-white/40" />
+                <span className="font-mono-label text-white/40 text-[10px]">Distribution hub</span>
               </div>
             </div>
           </div>
@@ -178,14 +149,11 @@ const DistributionSection = () => {
 
         {/* Partners */}
         <div ref={partnersRef} className="mt-16 pt-8 border-t border-white/10">
-          <span className="font-mono-label text-white/40 block mb-6">Trusted By</span>
+          <span className="font-mono-label text-white/40 block mb-6">Compatible With</span>
           <div className="flex flex-wrap gap-8 lg:gap-12 items-center">
-            {partners.map((partner) => (
-              <span
-                key={partner}
-                className="text-white/30 font-display font-semibold text-lg lg:text-xl hover:text-white/50 transition-colors duration-300"
-              >
-                {partner}
+            {['Shell', 'Total', 'Mobil', 'Castrol', 'Valvoline', 'BP'].map(p => (
+              <span key={p} className="text-white/30 font-display font-semibold text-lg lg:text-xl hover:text-white/50 transition-colors duration-300">
+                {p}
               </span>
             ))}
           </div>

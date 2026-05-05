@@ -15,6 +15,7 @@ import CertificationsSection from './sections/CertificationsSection';
 import DistributionSection from './sections/DistributionSection';
 import ContactSection from './sections/ContactSection';
 import BlogPreviewSection from './sections/BlogPreviewSection';
+import NewsletterSection from './sections/NewsletterSection';
 import Footer from './sections/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -99,6 +100,7 @@ function App() {
         <CertificationsSection />
         <DistributionSection />
         <BlogPreviewSection />
+        <NewsletterSection />
         <ContactSection />
         <Footer />
       </main>
