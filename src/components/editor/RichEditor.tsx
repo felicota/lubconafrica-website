@@ -62,7 +62,7 @@ export default function RichEditor({ content, onChange, onImageUpload }: Props) 
   useEffect(() => {
     if (!editor || !content) return;
     if (editor.getHTML() !== content) {
-      editor.commands.setContent(content, false);
+      editor.commands.setContent(content);
     }
   }, [editor, content]);
 
