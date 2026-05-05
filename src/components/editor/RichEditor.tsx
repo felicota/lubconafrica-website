@@ -1,4 +1,5 @@
 import { useEditor, EditorContent } from '@tiptap/react';
+import { useEffect } from 'react';
 import StarterKit from '@tiptap/starter-kit';
 import ImageExtension from '@tiptap/extension-image';
 import LinkExtension from '@tiptap/extension-link';
@@ -56,6 +57,14 @@ export default function RichEditor({ content, onChange, onImageUpload }: Props) 
       onChange(editor.getHTML());
     },
   });
+
+  // Sync content into editor when it arrives from Supabase (edit mode)
+  useEffect(() => {
+    if (!editor || !content) return;
+    if (editor.getHTML() !== content) {
+      editor.commands.setContent(content, false);
+    }
+  }, [editor, content]);
 
   if (!editor) return null;
 
