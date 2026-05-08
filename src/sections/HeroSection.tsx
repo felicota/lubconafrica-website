@@ -124,8 +124,8 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="bg-image absolute inset-0">
         <img
-          src="/hero_machinery_bg.jpg"
-          alt="Industrial machinery"
+          src="/lubcon_super_resurs_banner.png"
+          alt="Lubcon Super Resurs premium engine oil Nigeria"
           className="w-full h-full object-cover"
         />
         {/* Navy Wash Overlay */}
@@ -194,8 +194,8 @@ const HeroSection = () => {
           className="hidden lg:block absolute right-[6vw] top-[18vh] w-[34vw] h-[56vh] rounded-xl overflow-hidden card-shadow"
         >
           <img
-            src="/hydraulic_oil_card.jpg"
-            alt="Hydraulic Oils"
+            src="/lubcon_super_resurs.jpg"
+            alt="Lubcon Super Resurs hydraulic oil Nigeria"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent to-transparent" />

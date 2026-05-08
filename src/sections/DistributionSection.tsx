@@ -69,12 +69,12 @@ const DistributionSection = () => {
 
           {/* Left */}
           <div ref={headerRef}>
-            <span className="font-mono-label text-gold block mb-3">Nationwide Coverage</span>
+            <span className="font-mono-label text-gold block mb-3">International Coverage</span>
             <h2 className="font-display font-bold text-white text-[clamp(32px,3.6vw,56px)] mb-6">
               Distribution Network
             </h2>
             <p className="text-cool-gray text-base lg:text-lg leading-relaxed max-w-lg mb-6">
-              From our headquarters in Ilorin, LUBCON Africa products reach fleets, factories and farms across Nigeria through a growing network of distribution hubs.
+              From our headquarters in Ilorin, LUBCON Africa products reach fleets, factories and farms across Africa through a growing network of distribution hubs.
             </p>
 
             {/* Stats */}

@@ -69,30 +69,30 @@ function getRecommendation(s1: string, s2: string, s3: string): Recommendation {
   // Petrol engine
   if (s1 === 'engine_petrol') {
     if (s2 === 'high_perf' || s3 === 'heavy')
-      return { product: 'Automotive Oils', grade: '5W-30 / 10W-40', classification: 'API SP · ACEA A3/B4', reason: 'Low-viscosity full-synthetic blend for turbocharged and high-performance petrol engines — maximum wear protection at high RPM.', image: '/category_automotive.jpg' };
+      return { product: 'Automotive Oils', grade: '5W-30 / 10W-40', classification: 'API SP · ACEA A3/B4', reason: 'Low-viscosity full-synthetic blend for turbocharged and high-performance petrol engines — maximum wear protection at high RPM.', image: '/lubcon_nano_automative_products_img.jpeg' };
     if (s3 === 'extreme')
-      return { product: 'Automotive Oils', grade: '20W-50', classification: 'API SN Plus', reason: 'Higher viscosity grade maintains oil film integrity in extreme heat and dusty Nigerian conditions — ideal for older or high-mileage engines.', image: '/category_automotive.jpg' };
-    return { product: 'Automotive Oils', grade: '10W-40 / 15W-40', classification: 'API SN Plus · ACEA A3/B4', reason: 'All-round grade for petrol passenger cars and light commercials under normal driving conditions in Nigeria\'s climate.', image: '/category_automotive.jpg' };
+      return { product: 'Automotive Oils', grade: '20W-50', classification: 'API SN Plus', reason: 'Higher viscosity grade maintains oil film integrity in extreme heat and dusty Nigerian conditions — ideal for older or high-mileage engines.', image: '/lubcon_nano_automative_products_img.jpeg' };
+    return { product: 'Automotive Oils', grade: '10W-40 / 15W-40', classification: 'API SN Plus · ACEA A3/B4', reason: 'All-round grade for petrol passenger cars and light commercials under normal driving conditions in Nigeria\'s climate.', image: '/lubcon_nano_automative_products_img.jpeg' };
   }
 
   // Diesel engine
   if (s1 === 'engine_diesel') {
     if (s2 === 'generator')
-      return { product: 'Heavy-Duty Diesel', grade: 'SAE 40', classification: 'API CK-4', reason: 'Monograde SAE 40 is the standard choice for stationary diesel generators — excellent thermal stability and oxidation resistance for continuous operation.', image: '/category_diesel.jpg' };
+      return { product: 'Heavy-Duty Diesel', grade: 'SAE 40', classification: 'API CK-4', reason: 'Monograde SAE 40 is the standard choice for stationary diesel generators — excellent thermal stability and oxidation resistance for continuous operation.', image: '/lubcon_dieselube_hd_50.jpeg' };
     if (s2 === 'agri')
-      return { product: 'Heavy-Duty Diesel', grade: '15W-40', classification: 'API CJ-4 · ACEA E9', reason: 'Multigrade 15W-40 handles the cold-start demands of agricultural tractors while protecting under full field load.', image: '/category_diesel.jpg' };
+      return { product: 'Heavy-Duty Diesel', grade: '15W-40', classification: 'API CJ-4 · ACEA E9', reason: 'Multigrade 15W-40 handles the cold-start demands of agricultural tractors while protecting under full field load.', image: '/lubcon_dieselube_hd_50.jpeg' };
     if (s3 === 'extreme')
-      return { product: 'Heavy-Duty Diesel', grade: 'SAE 40 / 15W-40', classification: 'API CK-4 · ACEA E9', reason: 'Heavy SAE grade for trucks operating under extreme heat and maximum payload — maintains oil pressure and protects against deposit build-up.', image: '/category_diesel.jpg' };
-    return { product: 'Heavy-Duty Diesel', grade: '15W-40', classification: 'API CK-4 · ACEA E9', reason: 'Industry-standard 15W-40 for trucks and buses — extended drain intervals, strong detergency and proven protection across Nigerian routes.', image: '/category_diesel.jpg' };
+      return { product: 'Heavy-Duty Diesel', grade: 'SAE 40 / 15W-40', classification: 'API CK-4 · ACEA E9', reason: 'Heavy SAE grade for trucks operating under extreme heat and maximum payload — maintains oil pressure and protects against deposit build-up.', image: '/lubcon_dieselube_hd_50.jpeg' };
+    return { product: 'Heavy-Duty Diesel', grade: '15W-40', classification: 'API CK-4 · ACEA E9', reason: 'Industry-standard 15W-40 for trucks and buses — extended drain intervals, strong detergency and proven protection across Nigerian routes.', image: '/lubcon_dieselube_hd_50.jpeg' };
   }
 
   // Hydraulic
   if (s1 === 'hydraulic') {
     if (s2 === 'industrial' || s3 === 'heavy')
-      return { product: 'Hydraulic Fluids', grade: 'ISO 68', classification: 'DIN 51524 HLP', reason: 'ISO 68 higher viscosity grade for slow-moving industrial hydraulic systems under high pressure and heavy continuous load.', image: '/category_hydraulic.jpg' };
+      return { product: 'Hydraulic Fluids', grade: 'ISO 68', classification: 'DIN 51524 HLP', reason: 'ISO 68 higher viscosity grade for slow-moving industrial hydraulic systems under high pressure and heavy continuous load.', image: '/lubcon-vmpauto_product_lineup.jpeg' };
     if (s2 === 'mining' || s3 === 'extreme')
-      return { product: 'Hydraulic Fluids', grade: 'ISO 46', classification: 'DIN 51524 HLP', reason: 'ISO 46 balances flow at high temperatures with anti-wear performance for mining equipment operating in hot, dusty environments.', image: '/category_hydraulic.jpg' };
-    return { product: 'Hydraulic Fluids', grade: 'ISO 46', classification: 'DIN 51524 HLP', reason: 'ISO 46 is the most widely specified hydraulic grade for agricultural and construction equipment — optimal flow and wear protection.', image: '/category_hydraulic.jpg' };
+      return { product: 'Hydraulic Fluids', grade: 'ISO 46', classification: 'DIN 51524 HLP', reason: 'ISO 46 balances flow at high temperatures with anti-wear performance for mining equipment operating in hot, dusty environments.', image: '/lubcon-vmpauto_product_lineup.jpeg' };
+    return { product: 'Hydraulic Fluids', grade: 'ISO 46', classification: 'DIN 51524 HLP', reason: 'ISO 46 is the most widely specified hydraulic grade for agricultural and construction equipment — optimal flow and wear protection.', image: '/lubcon-vmpauto_product_lineup.jpeg' };
   }
 
   // Gearbox

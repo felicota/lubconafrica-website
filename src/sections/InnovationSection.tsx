@@ -72,8 +72,8 @@ const InnovationSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/lab_testing_bg.jpg"
-          alt="Laboratory testing"
+          src="/lubcon_resurs_lab.jpeg"
+          alt="Lubcon Africa Resurs laboratory testing Nigeria"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-navy/85 via-navy/70 to-navy/50" />

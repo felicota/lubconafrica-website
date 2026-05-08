@@ -2,6 +2,7 @@ export interface Product {
   title: string;
   description: string;
   image: string;
+  tds?: string;
   fullDescription: string;
   specs: { label: string; value: string }[];
   grades: string[];
@@ -13,7 +14,8 @@ export const products: Product[] = [
   {
     title: 'Automotive Oils',
     description: 'Cars, SUVs, light trucks.',
-    image: '/category_automotive.jpg',
+    image: '/lubcon_nano_automative_products_img.jpeg',
+    tds: '/lubcon_super_resurs_tds-automotive-oils.pdf',
     fullDescription:
       "Premium engine oils formulated for petrol and modern turbocharged engines. Provides outstanding wear protection, thermal stability and fuel economy for passenger vehicles across all driving conditions in Nigeria's climate.",
     specs: [
@@ -33,7 +35,8 @@ export const products: Product[] = [
   {
     title: 'Heavy-Duty Diesel',
     description: 'Trucks, buses, generators.',
-    image: '/category_diesel.jpg',
+    image: '/lubcon_dieselube_hd_50.jpeg',
+    tds: '/lubcon_dieselube_15W40_tds-heavy-duty-diesel.pdf',
     fullDescription:
       "Engineered for the demands of high-load diesel engines operating in Nigeria's transport, logistics and power generation sectors. Delivers extended drain intervals and robust protection under extreme conditions.",
     specs: [
@@ -51,9 +54,9 @@ export const products: Product[] = [
     containers: ['4 Litre', '5 Litre', '20 Litre', '208 Litre drum'],
   },
   {
-    title: 'Hydraulic Fluids',
-    description: 'Construction, agriculture, mining.',
-    image: '/category_hydraulic.jpg',
+    title: 'VMPAUTO Products',
+    description: 'Engine Resurs, Decarbonizer, Greases, Polish.',
+    image: '/lubcon-vmpauto_product_lineup.jpeg',
     fullDescription:
       'High-performance hydraulic fluids providing excellent anti-wear protection, oxidation resistance and water separation for hydraulic systems operating under high pressure and variable temperatures.',
     specs: [

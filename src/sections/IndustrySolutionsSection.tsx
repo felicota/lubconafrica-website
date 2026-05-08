@@ -15,7 +15,7 @@ const industries = [
   },
   {
     title: 'Power & Agriculture',
-    image: '/power_agri_img.jpg',
+    image: '/lubcon-africa_power_agri_img.jpg',
   },
 ];
 

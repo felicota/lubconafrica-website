@@ -78,8 +78,8 @@ const FeaturedProductSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/featured_nano_bg.jpg"
-          alt="Engine testing environment"
+          src="/lubcon_africa_product_banner.jpeg"
+          alt="Lubcon Africa premium lubricants product range Nigeria"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-navy/85 via-navy/65 to-navy/45" />
@@ -95,7 +95,7 @@ const FeaturedProductSection = () => {
               ref={headline1Ref}
               className="block text-[clamp(36px,4.5vw,72px)] text-white"
             >
-              Nano
+              Lubcon Nano
             </span>
             <span
               ref={headline2Ref}
@@ -126,14 +126,14 @@ const FeaturedProductSection = () => {
           className="hidden lg:block absolute right-[6vw] top-[16vh] w-[36vw] h-[62vh] rounded-xl overflow-hidden card-shadow"
         >
           <img
-            src="/nano_oil_bottle_card.jpg"
-            alt="Nano Technology Oil"
+            src="/lubcon_super_resurs_5L.jpeg"
+            alt="Lubcon Super Resurs 5L engine oil Nigeria"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent to-transparent" />
           <div className="absolute bottom-6 left-6 right-6">
             <p className="font-mono-label text-gold mb-2">Premium</p>
-            <h3 className="font-display font-semibold text-white text-xl mb-1">Nano 5W-40</h3>
+            <h3 className="font-display font-semibold text-white text-xl mb-1">Lubcon Super Resurs</h3>
             <p className="text-cool-gray text-sm">Full synthetic, low SAPS.</p>
           </div>
         </div>

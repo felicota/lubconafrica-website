@@ -85,8 +85,8 @@ const BuiltForAfricaSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/workshop_workers_bg.jpg"
-          alt="African workers in workshop"
+          src="/lubcon_africa_web_banner.png"
+          alt="Lubcon Africa industrial lubricants web banner Nigeria"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-navy/85 via-navy/70 to-navy/50" />

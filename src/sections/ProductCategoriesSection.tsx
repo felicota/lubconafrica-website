@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   ArrowRight, X, CheckCircle2, FlaskConical, Package,
-  MessageCircle, Wand2, GitCompare, PlusCircle, MinusCircle,
+  MessageCircle, Wand2, GitCompare, PlusCircle, MinusCircle, FileDown,
 } from 'lucide-react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -71,10 +71,17 @@ function ProductModal({ product, onClose }: { product: Product | null; onClose: 
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-white/10 flex items-center gap-3">
+            <div className="px-6 py-4 border-t border-white/10 flex items-center gap-3 flex-wrap">
               <Button onClick={scrollToContact} className="flex-1 bg-gold hover:bg-gold-light text-navy-dark font-semibold rounded-full gap-2">
                 <MessageCircle size={16} /> Request a Quote
               </Button>
+              {product.tds && (
+                <a href={product.tds} target="_blank" rel="noopener noreferrer" download>
+                  <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full gap-2">
+                    <FileDown size={16} /> Download TDS
+                  </Button>
+                </a>
+              )}
               <Button onClick={onClose} variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full">Close</Button>
             </div>
           </>

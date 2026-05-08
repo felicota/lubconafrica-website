@@ -11,9 +11,14 @@ const stats = [
     description: 'Oils, greases, and specialty fluids.',
   },
   {
-    number: '6',
+    number: '3',
     label: 'Plants',
-    description: 'Strategically located across the region.',
+    description: 'Strategically located across the West African region.',
+  },
+  {
+    number: '50+',
+    label: 'Distribution Outlets',
+    description: 'Malls, distributors, garages, filling/service stations, auto parts stores, E-commerce platforms, independent kiosks',
   },
   {
     number: '24h',

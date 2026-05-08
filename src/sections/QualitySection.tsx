@@ -72,8 +72,8 @@ const QualitySection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/quality_lab_bg.jpg"
-          alt="Quality control laboratory"
+          src="/lubcon_quality_modern_lab_bg.jpeg"
+          alt="Lubcon Africa quality control modern laboratory Nigeria"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-navy/85 via-navy/70 to-navy/50" />
