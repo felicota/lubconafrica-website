@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import RichEditor from '@/components/editor/RichEditor';
 import MediaLibrary from '@/components/admin/MediaLibrary';
+import { convertToWebP } from '@/lib/convertToWebP';
 
 const generateSlug = (title: string) =>
   title.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -61,9 +62,10 @@ export default function PostEditorPage() {
 
   const uploadCoverImage = async (file: File) => {
     setCoverUploading(true);
-    const ext = file.name.split('.').pop();
-    const path = `covers/${Date.now()}.${ext}`;
-    const { data, error } = await supabase.storage.from('lubcon-blog-images').upload(path, file, { contentType: file.type, upsert: true });
+    let uploadFile = file;
+    try { uploadFile = await convertToWebP(file); } catch { /* keep original if conversion fails */ }
+    const path = `covers/${Date.now()}.webp`;
+    const { data, error } = await supabase.storage.from('lubcon-blog-images').upload(path, uploadFile, { contentType: 'image/webp', upsert: true });
     setCoverUploading(false);
     if (error) {
       toast.error(`Upload failed: ${error.message}`);
@@ -104,9 +106,10 @@ export default function PostEditorPage() {
   };
 
   const handleEditorImageUpload = useCallback(async (file: File): Promise<string> => {
-    const ext = file.name.split('.').pop();
-    const path = `inline/${Date.now()}.${ext}`;
-    const { data, error } = await supabase.storage.from('lubcon-blog-images').upload(path, file, { contentType: file.type, upsert: true });
+    let uploadFile = file;
+    try { uploadFile = await convertToWebP(file); } catch { /* keep original if conversion fails */ }
+    const path = `inline/${Date.now()}.webp`;
+    const { data, error } = await supabase.storage.from('lubcon-blog-images').upload(path, uploadFile, { contentType: 'image/webp', upsert: true });
     if (error) throw new Error('Image upload failed');
     const { data: urlData } = supabase.storage.from('lubcon-blog-images').getPublicUrl(data.path);
     return urlData.publicUrl;
