@@ -78,7 +78,7 @@ const FeaturedProductSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/lubcon_africa_product_banner.jpeg"
+          src="/lubcon_africa_product_banner.webp"
           alt="Lubcon Africa premium lubricants product range Nigeria"
           className="w-full h-full object-cover"
         />
@@ -126,7 +126,7 @@ const FeaturedProductSection = () => {
           className="hidden lg:block absolute right-[6vw] top-[16vh] w-[36vw] h-[62vh] rounded-xl overflow-hidden card-shadow"
         >
           <img
-            src="/lubcon_super_resurs_5L.jpeg"
+            src="/lubcon_super_resurs_5L.webp"
             alt="Lubcon Super Resurs 5L engine oil Nigeria"
             className="w-full h-full object-cover"
           />

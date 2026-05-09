@@ -3,11 +3,12 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
 import { BLOG_CATEGORIES } from '@/types/blog';
 import { toast } from 'sonner';
-import { ArrowLeft, Upload, X } from 'lucide-react';
+import { ArrowLeft, Upload, X, Images } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import RichEditor from '@/components/editor/RichEditor';
+import MediaLibrary from '@/components/admin/MediaLibrary';
 
 const generateSlug = (title: string) =>
   title.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -28,6 +29,9 @@ export default function PostEditorPage() {
   const [coverImage, setCoverImage] = useState<string | null>(null);
   const [coverUploading, setCoverUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [mediaLibOpen, setMediaLibOpen] = useState(false);
+  const [mediaLibTarget, setMediaLibTarget] = useState<'cover' | 'editor'>('cover');
+  const [editorImageResolver, setEditorImageResolver] = useState<((url: string) => void) | null>(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: sessionData }) => {
@@ -106,6 +110,24 @@ export default function PostEditorPage() {
     if (error) throw new Error('Image upload failed');
     const { data: urlData } = supabase.storage.from('lubcon-blog-images').getPublicUrl(data.path);
     return urlData.publicUrl;
+  }, []);
+
+  const handleMediaLibSelect = (url: string) => {
+    if (mediaLibTarget === 'cover') {
+      setCoverImage(url);
+    } else if (editorImageResolver) {
+      editorImageResolver(url);
+      setEditorImageResolver(null);
+    }
+    setMediaLibOpen(false);
+  };
+
+  const handleBrowseForEditor = useCallback((): Promise<string> => {
+    return new Promise(resolve => {
+      setEditorImageResolver(() => resolve);
+      setMediaLibTarget('editor');
+      setMediaLibOpen(true);
+    });
   }, []);
 
   return (
@@ -215,7 +237,16 @@ export default function PostEditorPage() {
 
         {/* Cover Image */}
         <div>
-          <label className="font-mono-label text-white/40 block mb-2">Cover Image</label>
+          <div className="flex items-center justify-between mb-2">
+            <label className="font-mono-label text-white/40">Cover Image</label>
+            <button
+              type="button"
+              onClick={() => { setMediaLibTarget('cover'); setMediaLibOpen(true); }}
+              className="flex items-center gap-1.5 text-xs text-gold/70 hover:text-gold transition-colors"
+            >
+              <Images size={13} /> Browse library
+            </button>
+          </div>
           {coverImage ? (
             <div className="relative rounded-xl overflow-hidden h-48 bg-white/5">
               <img src={coverImage} alt="Cover" className="w-full h-full object-cover" />
@@ -234,7 +265,7 @@ export default function PostEditorPage() {
                 <>
                   <Upload size={20} className="text-white/30 mb-2" />
                   <span className="text-white/30 text-sm">Click to upload cover image</span>
-                  <span className="text-white/20 text-xs mt-1">JPG, PNG, WebP</span>
+                  <span className="text-white/20 text-xs mt-1">JPG, PNG, WebP — or browse library above</span>
                 </>
               )}
               <input type="file" accept="image/*" onChange={handleCoverDrop} className="hidden" />
@@ -249,6 +280,7 @@ export default function PostEditorPage() {
             content={content}
             onChange={setContent}
             onImageUpload={handleEditorImageUpload}
+            onBrowseLibrary={handleBrowseForEditor}
           />
         </div>
 
@@ -271,6 +303,12 @@ export default function PostEditorPage() {
           </Button>
         </div>
       </main>
+
+      <MediaLibrary
+        open={mediaLibOpen}
+        onClose={() => setMediaLibOpen(false)}
+        onSelect={handleMediaLibSelect}
+      />
     </div>
   );
 }

@@ -69,60 +69,60 @@ function getRecommendation(s1: string, s2: string, s3: string): Recommendation {
   // Petrol engine
   if (s1 === 'engine_petrol') {
     if (s2 === 'high_perf')
-      return { product: 'VMPAUTO Modern', grade: '0W-20 / 5W-30', classification: 'API SP · ILSAC GF-6A · QuadroSynthetic', reason: "VMPAUTO's flagship QuadroSynthetic (PAO + VHVI + ESTER + AN) with 300 ppm Moly — viscosity index of 200 vs. the industry average of 170. Built for turbocharged, direct-injection and high-performance petrol engines demanding the very best protection from cold start to redline. Available through Lubcon Africa.", image: '/lubcon-vmpauto_product_lineup.jpeg' };
+      return { product: 'VMPAUTO Modern', grade: '0W-20 / 5W-30', classification: 'API SP · ILSAC GF-6A · QuadroSynthetic', reason: "VMPAUTO's flagship QuadroSynthetic (PAO + VHVI + ESTER + AN) with 300 ppm Moly — viscosity index of 200 vs. the industry average of 170. Built for turbocharged, direct-injection and high-performance petrol engines demanding the very best protection from cold start to redline. Available through Lubcon Africa.", image: '/lubcon-vmpauto_product_lineup.webp' };
     if (s3 === 'heavy')
-      return { product: 'Automotive Oils', grade: '5W-30 / 10W-40', classification: 'API SP · ACEA A3/B4', reason: 'Low-viscosity full-synthetic blend for turbocharged petrol engines under heavy load — maximum wear protection at high RPM with excellent thermal stability.', image: '/lubcon_nano_automative_products_img.jpeg' };
+      return { product: 'Automotive Oils', grade: '5W-30 / 10W-40', classification: 'API SP · ACEA A3/B4', reason: 'Low-viscosity full-synthetic blend for turbocharged petrol engines under heavy load — maximum wear protection at high RPM with excellent thermal stability.', image: '/lubcon_nano_automative_products_img.webp' };
     if (s3 === 'extreme')
-      return { product: 'Automotive Oils', grade: '20W-50', classification: 'API SN Plus', reason: 'Higher viscosity grade maintains oil film integrity in extreme heat and dusty Nigerian conditions — ideal for older or high-mileage engines.', image: '/lubcon_nano_automative_products_img.jpeg' };
-    return { product: 'Automotive Oils', grade: '10W-40 / 15W-40', classification: 'API SN Plus · ACEA A3/B4', reason: "All-round grade for petrol passenger cars and light commercials under normal driving conditions in Nigeria's climate.", image: '/lubcon_nano_automative_products_img.jpeg' };
+      return { product: 'Automotive Oils', grade: '20W-50', classification: 'API SN Plus', reason: 'Higher viscosity grade maintains oil film integrity in extreme heat and dusty Nigerian conditions — ideal for older or high-mileage engines.', image: '/lubcon_nano_automative_products_img.webp' };
+    return { product: 'Automotive Oils', grade: '10W-40 / 15W-40', classification: 'API SN Plus · ACEA A3/B4', reason: "All-round grade for petrol passenger cars and light commercials under normal driving conditions in Nigeria's climate.", image: '/lubcon_nano_automative_products_img.webp' };
   }
 
   // Diesel engine
   if (s1 === 'engine_diesel') {
     if ((s2 === 'truck' || s2 === 'bus') && (s3 === 'heavy' || s3 === 'extreme'))
-      return { product: 'VMPAUTO Diesel', grade: '10W-40', classification: 'API CI-4/SL · ACEA E4/E7', reason: "VMPAUTO's synthetic VHVI+AN formulation extends oil life by 30% over semi-synthetics. Alkylated naphthalenes prevent deposit and sludge formation — proven on long Nigerian haulage routes under maximum payload and heat. Available through Lubcon Africa.", image: '/lubcon-vmpauto_product_lineup.jpeg' };
+      return { product: 'VMPAUTO Diesel', grade: '10W-40', classification: 'API CI-4/SL · ACEA E4/E7', reason: "VMPAUTO's synthetic VHVI+AN formulation extends oil life by 30% over semi-synthetics. Alkylated naphthalenes prevent deposit and sludge formation — proven on long Nigerian haulage routes under maximum payload and heat. Available through Lubcon Africa.", image: '/lubcon-vmpauto_product_lineup.webp' };
     if (s2 === 'generator')
-      return { product: 'Heavy-Duty Diesel', grade: 'SAE 40', classification: 'API CK-4', reason: 'Monograde SAE 40 is the standard choice for stationary diesel generators — excellent thermal stability and oxidation resistance for continuous operation.', image: '/lubcon_dieselube_hd_50.jpeg' };
+      return { product: 'Heavy-Duty Diesel', grade: 'SAE 40', classification: 'API CK-4', reason: 'Monograde SAE 40 is the standard choice for stationary diesel generators — excellent thermal stability and oxidation resistance for continuous operation.', image: '/lubcon_dieselube_hd_50.webp' };
     if (s2 === 'agri')
-      return { product: 'Heavy-Duty Diesel', grade: '15W-40', classification: 'API CJ-4 · ACEA E9', reason: 'Multigrade 15W-40 handles the cold-start demands of agricultural tractors while protecting under full field load.', image: '/lubcon_dieselube_hd_50.jpeg' };
+      return { product: 'Heavy-Duty Diesel', grade: '15W-40', classification: 'API CJ-4 · ACEA E9', reason: 'Multigrade 15W-40 handles the cold-start demands of agricultural tractors while protecting under full field load.', image: '/lubcon_dieselube_hd_50.webp' };
     if (s3 === 'extreme')
-      return { product: 'Heavy-Duty Diesel', grade: 'SAE 40 / 15W-40', classification: 'API CK-4 · ACEA E9', reason: 'Heavy SAE grade for trucks operating under extreme heat and maximum payload — maintains oil pressure and protects against deposit build-up.', image: '/lubcon_dieselube_hd_50.jpeg' };
-    return { product: 'Heavy-Duty Diesel', grade: '15W-40', classification: 'API CK-4 · ACEA E9', reason: 'Industry-standard 15W-40 for trucks and buses — extended drain intervals, strong detergency and proven protection across Nigerian routes.', image: '/lubcon_dieselube_hd_50.jpeg' };
+      return { product: 'Heavy-Duty Diesel', grade: 'SAE 40 / 15W-40', classification: 'API CK-4 · ACEA E9', reason: 'Heavy SAE grade for trucks operating under extreme heat and maximum payload — maintains oil pressure and protects against deposit build-up.', image: '/lubcon_dieselube_hd_50.webp' };
+    return { product: 'Heavy-Duty Diesel', grade: '15W-40', classification: 'API CK-4 · ACEA E9', reason: 'Industry-standard 15W-40 for trucks and buses — extended drain intervals, strong detergency and proven protection across Nigerian routes.', image: '/lubcon_dieselube_hd_50.webp' };
   }
 
   // Hydraulic
   if (s1 === 'hydraulic') {
     if (s2 === 'industrial' || s3 === 'heavy')
-      return { product: 'Hydraulic Fluids', grade: 'ISO 68', classification: 'DIN 51524 HLP', reason: 'ISO 68 higher viscosity grade for slow-moving industrial hydraulic systems under high pressure and heavy continuous load.', image: '/lubcon-vmpauto_product_lineup.jpeg' };
+      return { product: 'Hydraulic Fluids', grade: 'ISO 68', classification: 'DIN 51524 HLP', reason: 'ISO 68 higher viscosity grade for slow-moving industrial hydraulic systems under high pressure and heavy continuous load.', image: '/lubcon-vmpauto_product_lineup.webp' };
     if (s2 === 'mining' || s3 === 'extreme')
-      return { product: 'Hydraulic Fluids', grade: 'ISO 46', classification: 'DIN 51524 HLP', reason: 'ISO 46 balances flow at high temperatures with anti-wear performance for mining equipment operating in hot, dusty environments.', image: '/lubcon-vmpauto_product_lineup.jpeg' };
-    return { product: 'Hydraulic Fluids', grade: 'ISO 46', classification: 'DIN 51524 HLP', reason: 'ISO 46 is the most widely specified hydraulic grade for agricultural and construction equipment — optimal flow and wear protection.', image: '/lubcon-vmpauto_product_lineup.jpeg' };
+      return { product: 'Hydraulic Fluids', grade: 'ISO 46', classification: 'DIN 51524 HLP', reason: 'ISO 46 balances flow at high temperatures with anti-wear performance for mining equipment operating in hot, dusty environments.', image: '/lubcon-vmpauto_product_lineup.webp' };
+    return { product: 'Hydraulic Fluids', grade: 'ISO 46', classification: 'DIN 51524 HLP', reason: 'ISO 46 is the most widely specified hydraulic grade for agricultural and construction equipment — optimal flow and wear protection.', image: '/lubcon-vmpauto_product_lineup.webp' };
   }
 
   // Gearbox
   if (s1 === 'gearbox') {
     if (s2 === 'heavy_gear' && (s3 === 'heavy' || s3 === 'extreme'))
-      return { product: 'VMPAUTO Gear Oil', grade: '75W-140', classification: 'API GL-5 · Scania STO 2:0A', reason: 'Fully synthetic PAO+ESTER gear oil certified to Scania STO 2:0A — passed 100 hours of KRL shear testing. Maximum film strength for heavily loaded truck differentials and axles under Nigerian road stress. Available through Lubcon Africa.', image: '/lubcon-vmpauto_product_lineup.jpeg' };
+      return { product: 'VMPAUTO Gear Oil', grade: '75W-140', classification: 'API GL-5 · Scania STO 2:0A', reason: 'Fully synthetic PAO+ESTER gear oil certified to Scania STO 2:0A — passed 100 hours of KRL shear testing. Maximum film strength for heavily loaded truck differentials and axles under Nigerian road stress. Available through Lubcon Africa.', image: '/lubcon-vmpauto_product_lineup.webp' };
     if (s2 === 'heavy_gear')
-      return { product: 'Gear & Transmission', grade: '85W-140', classification: 'API GL-5 · MIL-L-2105D', reason: 'High-viscosity EP gear oil for heavily loaded truck differentials and axles — maximum film strength under shock loading.', image: '/category_gear.jpg' };
+      return { product: 'Gear & Transmission', grade: '85W-140', classification: 'API GL-5 · MIL-L-2105D', reason: 'High-viscosity EP gear oil for heavily loaded truck differentials and axles — maximum film strength under shock loading.', image: '/category_gear.webp' };
     if (s2 === 'ind_gear')
-      return { product: 'Gear & Transmission', grade: 'SAE 90', classification: 'API GL-5', reason: 'Monograde SAE 90 for industrial gear drives — excellent load-carrying capacity for worm gears, reducers and spur gear systems.', image: '/category_gear.jpg' };
-    return { product: 'Gear & Transmission', grade: '80W-90', classification: 'API GL-4 / GL-5', reason: 'Versatile 80W-90 multigrade for passenger car manual gearboxes and light axles — smooth synchroniser operation and reliable EP protection.', image: '/category_gear.jpg' };
+      return { product: 'Gear & Transmission', grade: 'SAE 90', classification: 'API GL-5', reason: 'Monograde SAE 90 for industrial gear drives — excellent load-carrying capacity for worm gears, reducers and spur gear systems.', image: '/category_gear.webp' };
+    return { product: 'Gear & Transmission', grade: '80W-90', classification: 'API GL-4 / GL-5', reason: 'Versatile 80W-90 multigrade for passenger car manual gearboxes and light axles — smooth synchroniser operation and reliable EP protection.', image: '/category_gear.webp' };
   }
 
   // Bearings
   if (s1 === 'bearing') {
     if (s2 === 'ind_bear' && (s3 === 'heavy' || s3 === 'extreme'))
-      return { product: 'VMPAUTO MC Blue', grade: 'NLGI 2/3', classification: 'Lithium Complex · Drop Point +350°C', reason: 'High-temperature lithium complex grease with a welding load of 2,933 N and an operating range of -40°C to +180°C. Drop point of +350°C is the highest in its class — built for industrial bearings in continuous high-temperature service. Available through Lubcon Africa.', image: '/lubcon-vmpauto_product_lineup.jpeg' };
+      return { product: 'VMPAUTO MC Blue', grade: 'NLGI 2/3', classification: 'Lithium Complex · Drop Point +350°C', reason: 'High-temperature lithium complex grease with a welding load of 2,933 N and an operating range of -40°C to +180°C. Drop point of +350°C is the highest in its class — built for industrial bearings in continuous high-temperature service. Available through Lubcon Africa.', image: '/lubcon-vmpauto_product_lineup.webp' };
     if (s2 === 'heavy_bear' || s3 === 'heavy' || s3 === 'extreme')
-      return { product: 'Industrial Greases', grade: 'NLGI 3', classification: 'DIN 51825 KP3K', reason: 'Stiff NLGI 3 grease for open gear drives and heavily loaded bearings in mining and quarrying — resists being flung off and withstands shock loads.', image: '/category_grease.jpg' };
+      return { product: 'Industrial Greases', grade: 'NLGI 3', classification: 'DIN 51825 KP3K', reason: 'Stiff NLGI 3 grease for open gear drives and heavily loaded bearings in mining and quarrying — resists being flung off and withstands shock loads.', image: '/category_grease.webp' };
     if (s2 === 'ind_bear')
-      return { product: 'Industrial Greases', grade: 'NLGI 2', classification: 'DIN 51825 KP2K', reason: 'Standard NLGI 2 lithium-complex grease for rolling element bearings in industrial plant — excellent water resistance and high-temperature stability.', image: '/category_grease.jpg' };
-    return { product: 'Industrial Greases', grade: 'NLGI 2', classification: 'DIN 51825 KP2K', reason: 'NLGI 2 multi-purpose grease for wheel bearings, ball joints and chassis lubrication — the most widely used grade for automotive applications.', image: '/category_grease.jpg' };
+      return { product: 'Industrial Greases', grade: 'NLGI 2', classification: 'DIN 51825 KP2K', reason: 'Standard NLGI 2 lithium-complex grease for rolling element bearings in industrial plant — excellent water resistance and high-temperature stability.', image: '/category_grease.webp' };
+    return { product: 'Industrial Greases', grade: 'NLGI 2', classification: 'DIN 51825 KP2K', reason: 'NLGI 2 multi-purpose grease for wheel bearings, ball joints and chassis lubrication — the most widely used grade for automotive applications.', image: '/category_grease.webp' };
   }
 
   // Cooling
-  return { product: 'Coolants & Chemicals', grade: 'OAT — Ready-to-use', classification: 'ASTM D3306 · BS 6580', reason: 'Long-life OAT coolant pre-mixed 50/50 for year-round protection from -37°C to +135°C — compatible with all metals including aluminium engines.', image: '/category_coolant.jpg' };
+  return { product: 'Coolants & Chemicals', grade: 'OAT — Ready-to-use', classification: 'ASTM D3306 · BS 6580', reason: 'Long-life OAT coolant pre-mixed 50/50 for year-round protection from -37°C to +135°C — compatible with all metals including aluminium engines.', image: '/category_coolant.webp' };
 }
 
 // ── Wizard component ──────────────────────────────────────────

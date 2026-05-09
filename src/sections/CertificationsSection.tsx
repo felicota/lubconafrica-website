@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const certifications = [
   {
-    logo: '/iso_logo.jpeg',
+    logo: '/iso_logo.webp',
     code: 'ISO 9001:2015',
     body: 'International Organisation for Standardisation',
     description:
@@ -14,7 +14,7 @@ const certifications = [
     tag: 'Quality Management',
   },
   {
-    logo: '/son_logo.png',
+    logo: '/son_logo.webp',
     code: 'SON Certified',
     body: 'Standards Organisation of Nigeria',
     description:

@@ -12,7 +12,7 @@ import {
   Bold, Italic, Underline, Strikethrough,
   Heading1, Heading2, Heading3,
   List, ListOrdered, Quote, Link2, Link2Off,
-  Image, Undo2, Redo2, AlignLeft, AlignCenter, AlignRight,
+  Image, Images, Undo2, Redo2, AlignLeft, AlignCenter, AlignRight,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -20,6 +20,7 @@ interface Props {
   content: string;
   onChange: (html: string) => void;
   onImageUpload: (file: File) => Promise<string>;
+  onBrowseLibrary?: () => Promise<string>;
 }
 
 const ToolbarButton = ({
@@ -41,7 +42,7 @@ const ToolbarButton = ({
 
 const Divider = () => <div className="w-px h-5 bg-white/10 mx-1" />;
 
-export default function RichEditor({ content, onChange, onImageUpload }: Props) {
+export default function RichEditor({ content, onChange, onImageUpload, onBrowseLibrary }: Props) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -94,6 +95,16 @@ export default function RichEditor({ content, onChange, onImageUpload }: Props) 
       }
     };
     input.click();
+  };
+
+  const browseLibrary = async () => {
+    if (!onBrowseLibrary) return;
+    try {
+      const url = await onBrowseLibrary();
+      if (url) editor.chain().focus().setImage({ src: url }).run();
+    } catch {
+      // user closed the modal without selecting
+    }
   };
 
   const wordCount = editor.storage.characterCount?.words() ?? 0;
@@ -184,9 +195,14 @@ export default function RichEditor({ content, onChange, onImageUpload }: Props) 
             onClick={() => editor.chain().focus().unsetLink().run()} title="Remove link"
           ><Link2Off size={15} /></ToolbarButton>
         )}
-        <ToolbarButton onClick={insertImage} title="Insert image">
+        <ToolbarButton onClick={insertImage} title="Upload image">
           <Image size={15} />
         </ToolbarButton>
+        {onBrowseLibrary && (
+          <ToolbarButton onClick={browseLibrary} title="Browse image library">
+            <Images size={15} />
+          </ToolbarButton>
+        )}
       </div>
 
       {/* Editor area */}

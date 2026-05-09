@@ -14,7 +14,7 @@ export const products: Product[] = [
   {
     title: 'Automotive Oils',
     description: 'Cars, SUVs, light trucks.',
-    image: '/lubcon_nano_automative_products_img.jpeg',
+    image: '/lubcon_nano_automative_products_img.webp',
     tds: '/lubcon_super_resurs_tds-automotive-oils.pdf',
     fullDescription:
       "Premium engine oils formulated for petrol and modern turbocharged engines. Provides outstanding wear protection, thermal stability and fuel economy for passenger vehicles across all driving conditions in Nigeria's climate.",
@@ -35,7 +35,7 @@ export const products: Product[] = [
   {
     title: 'Heavy-Duty Diesel',
     description: 'Trucks, buses, generators.',
-    image: '/lubcon_dieselube_hd_50.jpeg',
+    image: '/lubcon_dieselube_hd_50.webp',
     tds: '/lubcon_dieselube_15W40_tds-heavy-duty-diesel.pdf',
     fullDescription:
       "Engineered for the demands of high-load diesel engines operating in Nigeria's transport, logistics and power generation sectors. Delivers extended drain intervals and robust protection under extreme conditions.",
@@ -56,7 +56,7 @@ export const products: Product[] = [
   {
     title: 'VMPAUTO Products',
     description: 'Partner brand — engine oils, RESURS treatments & specialty greases.',
-    image: '/lubcon-vmpauto_product_lineup.jpeg',
+    image: '/lubcon-vmpauto_product_lineup.webp',
     fullDescription:
       "VMPAUTO is a Russian research and production company with 28 years of innovation in lubricants — a Lubcon Africa partner brand available exclusively in Nigeria through us. Their QuadroSynthetic engine oil (PAO + VHVI + ESTER formulation, API SP, ILSAC GF-6A) achieves a viscosity index of 200 — 15% higher than most competitors — for outstanding cold-start protection and reduced engine wear. The RESURS treatment line restores friction surfaces, decarbonises engines and equalises compression. Fully synthetic transmission oils carry Scania STO 2:0A certification, and specialty greases — MC Blue (drop point +350°C) and MC Rubin (water-resistant) — cover the most demanding bearing applications.",
     specs: [
@@ -77,7 +77,7 @@ export const products: Product[] = [
   {
     title: 'Industrial Greases',
     description: 'Bearings, chassis, open gears.',
-    image: '/category_grease.jpg',
+    image: '/category_grease.webp',
     fullDescription:
       'Multi-purpose lithium-complex greases delivering excellent load-carrying capacity, water resistance and high-temperature performance for bearings and general lubrication in industrial and automotive applications.',
     specs: [
@@ -97,7 +97,7 @@ export const products: Product[] = [
   {
     title: 'Gear & Transmission',
     description: 'Differentials, gearboxes, axles.',
-    image: '/category_gear.jpg',
+    image: '/category_gear.webp',
     fullDescription:
       'Extreme-pressure gear oils formulated to protect differentials, manual gearboxes and axles under the heaviest loads, reducing wear on gear teeth and synchronisers for extended component life.',
     specs: [
@@ -117,7 +117,7 @@ export const products: Product[] = [
   {
     title: 'Coolants & Chemicals',
     description: 'Heat transfer, cleaning, protection.',
-    image: '/category_coolant.jpg',
+    image: '/category_coolant.webp',
     fullDescription:
       'Long-life engine coolants and industrial chemicals providing freeze, boil-over and corrosion protection for all metals in modern cooling systems. Ready-to-use and concentrate options available.',
     specs: [

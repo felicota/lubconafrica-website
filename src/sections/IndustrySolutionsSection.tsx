@@ -7,15 +7,15 @@ gsap.registerPlugin(ScrollTrigger);
 const industries = [
   {
     title: 'Mining & Earthmoving',
-    image: '/mining_truck_img.jpg',
+    image: '/mining_truck_img.webp',
   },
   {
     title: 'Transport & Logistics',
-    image: '/transport_fleet_img.jpg',
+    image: '/transport_fleet_img.webp',
   },
   {
     title: 'Power & Agriculture',
-    image: '/lubcon-africa_power_agri_img.jpg',
+    image: '/lubcon-africa_power_agri_img.webp',
   },
 ];
 
