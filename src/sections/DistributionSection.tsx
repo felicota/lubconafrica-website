@@ -81,11 +81,11 @@ const DistributionSection = () => {
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="bg-white/5 border border-white/10 rounded-xl p-4">
                 <span className="font-display font-bold text-gold text-3xl block">{distributors.length - 1}</span>
-                <span className="text-white/40 text-sm">Distribution hubs</span>
+                <span className="text-white/40 text-sm">African distribution hubs</span>
               </div>
               <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-                <span className="font-display font-bold text-gold text-3xl block">6</span>
-                <span className="text-white/40 text-sm">Geopolitical zones</span>
+                <span className="font-display font-bold text-gold text-3xl block">11</span>
+                <span className="text-white/40 text-sm">African countries</span>
               </div>
             </div>
 
@@ -103,8 +103,8 @@ const DistributionSection = () => {
           <div ref={mapRef} className="relative bg-white/5 border border-white/10 rounded-xl overflow-hidden">
             <div className="h-72 lg:h-96">
               <MapContainer
-                center={[9.0, 8.0]}
-                zoom={5}
+                center={[7.0, 12.0]}
+                zoom={3}
                 scrollWheelZoom={false}
                 className="w-full h-full"
                 style={{ background: '#0B1F3F' }}
@@ -141,7 +141,7 @@ const DistributionSection = () => {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-white border border-white/40" />
-                <span className="font-mono-label text-white/40 text-[10px]">Distribution hub</span>
+                <span className="font-mono-label text-white/40 text-[10px]">African distribution hub</span>
               </div>
             </div>
           </div>
